@@ -5,5 +5,5 @@ class Quote < ApplicationRecord
 
   scope :ordered, -> { order(created_at: :desc) }
 
-  broadcasts_to ->(quote) { "quotes" }, inserts_by: :prepend
+  broadcasts_to ->(quote) { [quote.company, "quotes"] }, inserts_by: :prepend
 end
