@@ -3,7 +3,7 @@ class Quote < ApplicationRecord
 
   validates :name, presence: true
 
-  scope :ordered, -> { order(id: :desc) }
+  scope :ordered, -> { order(created_at: :desc) }
 
   broadcasts_to ->(quote) { "quotes" }, inserts_by: :prepend
 end
