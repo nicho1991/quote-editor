@@ -23,3 +23,5 @@ Things you may want to cover:
 
 * ...
 # following the guide https://www.hotrails.dev/turbo-rails/
+
+# test all bin/rails test:all
