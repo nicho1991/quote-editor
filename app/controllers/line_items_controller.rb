@@ -26,7 +26,10 @@ class LineItemsController < ApplicationController
 
   def update
     if @line_item.update(line_item_params)
-      redirect_to quote_path(@quote), notice: "Item was successfully updated."
+      respond_to do |format|
+        format.html { redirect_to quote_path(@quote), notice: "Item was successfully updated." }
+        format.turbo_stream { flash.now[:notice] = "Item was successfully updated." }
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -35,7 +38,11 @@ class LineItemsController < ApplicationController
   def destroy
     @line_item.destroy
 
-    redirect_to quote_path(@quote), notice: "Item was successfully destroyed."
+    respond_to do |format|
+      format.html { redirect_to quote_path(@quote), notice: "Item was successfully destroyed." }
+      format.turbo_stream { flash.now[:notice] = "Item was successfully destroyed." }
+    end
+
   end
 
   private
